@@ -14,23 +14,16 @@
   <servlet>
     <servlet-name>JSLearn</servlet-name>
     <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-    <init-param>
+   <init-param>
       <param-name>contextConfigLocation</param-name>
-      <param-value>/WEB-INF/spring-servlet-config.xml</param-value>
+      <param-value>/WEB-INF/classes/spring-servlet-config.xml</param-value>
     </init-param>
   </servlet>
   <servlet-mapping>
     <servlet-name>JSLearn</servlet-name>
     <url-pattern>/</url-pattern>
   </servlet-mapping>
-  <servlet>
-    <servlet-name>HelloWorldServlet</servlet-name>
-    <servlet-class>swm.servlet.HelloWorldServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>HelloWorldServlet</servlet-name>
-    <url-pattern>/toHelloWorldServlet</url-pattern>
-  </servlet-mapping>
+  
   <filter>
     <filter-name>CharacterEncodingFilter</filter-name>
     <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
