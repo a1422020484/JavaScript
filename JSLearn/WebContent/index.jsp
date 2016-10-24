@@ -7,14 +7,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h6>数据类型</h6>
-	<table>
-		<tr>
-			<td>1</td><td>2</td>
-		</tr>
-		<tr>
-			<td>11</td><td>22</td>
-		</tr>
-	</table>
+	<h1>9.22 第一章 spring之旅</h1>
+	<h1>9.23 第二章 装配bean</h1>
+	<h1>9.24 第三章 最小化springxml配置文件</h1>
+	<h1>9.25 第四章 面向切面的spring</h1>
 </body>
 </html>

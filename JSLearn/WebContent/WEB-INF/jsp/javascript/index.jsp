@@ -4,9 +4,17 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>原生JavaScript</title>
 </head>
 <body>
-
+	<h6>数据类型</h6>
+	<table>
+		<tr>
+			<td>1</td><td>2</td>
+		</tr>
+		<tr>
+			<td>11</td><td>22</td>
+		</tr>
+	</table>
 </body>
 </html>
