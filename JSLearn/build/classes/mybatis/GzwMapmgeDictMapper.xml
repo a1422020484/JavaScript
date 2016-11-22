@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="mapper.GzwMapmgeDictMapper" >
+  <resultMap id="BaseResultMap" type="po.GzwMapmgeDict" >
+    <result column="ID" property="id" jdbcType="OTHER" />
+    <result column="LAYER_NAME" property="layerName" jdbcType="OTHER" />
+    <result column="LAYER_TYPE" property="layerType" jdbcType="OTHER" />
+    <result column="LAYER_LEVEL" property="layerLevel" jdbcType="OTHER" />
+    <result column="LAYER_URL" property="layerUrl" jdbcType="OTHER" />
+    <result column="LAYER_PID" property="layerPid" jdbcType="OTHER" />
+    <result column="LAYER_REMARK" property="layerRemark" jdbcType="OTHER" />
+    <result column="LAYER_ISLEAF" property="layerIsleaf" jdbcType="OTHER" />
+    <result column="LAYER_ORDER" property="layerOrder" jdbcType="OTHER" />
+    <result column="LAYER_VALUE" property="layerValue" jdbcType="OTHER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, LAYER_NAME, LAYER_TYPE, LAYER_LEVEL, LAYER_URL, LAYER_PID, LAYER_REMARK, LAYER_ISLEAF, 
+    LAYER_ORDER, LAYER_VALUE
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="po.GzwMapmgeDictExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from GZW_MAPMGE_DICT
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="po.GzwMapmgeDictExample" >
+    delete from GZW_MAPMGE_DICT
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="po.GzwMapmgeDict" >
+    insert into GZW_MAPMGE_DICT (ID, LAYER_NAME, LAYER_TYPE, 
+      LAYER_LEVEL, LAYER_URL, LAYER_PID, 
+      LAYER_REMARK, LAYER_ISLEAF, LAYER_ORDER, 
+      LAYER_VALUE)
+    values (#{id,jdbcType=OTHER}, #{layerName,jdbcType=OTHER}, #{layerType,jdbcType=OTHER}, 
+      #{layerLevel,jdbcType=OTHER}, #{layerUrl,jdbcType=OTHER}, #{layerPid,jdbcType=OTHER}, 
+      #{layerRemark,jdbcType=OTHER}, #{layerIsleaf,jdbcType=OTHER}, #{layerOrder,jdbcType=OTHER}, 
+      #{layerValue,jdbcType=OTHER})
+  </insert>
+  <insert id="insertSelective" parameterType="po.GzwMapmgeDict" >
+    insert into GZW_MAPMGE_DICT
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="layerName != null" >
+        LAYER_NAME,
+      </if>
+      <if test="layerType != null" >
+        LAYER_TYPE,
+      </if>
+      <if test="layerLevel != null" >
+        LAYER_LEVEL,
+      </if>
+      <if test="layerUrl != null" >
+        LAYER_URL,
+      </if>
+      <if test="layerPid != null" >
+        LAYER_PID,
+      </if>
+      <if test="layerRemark != null" >
+        LAYER_REMARK,
+      </if>
+      <if test="layerIsleaf != null" >
+        LAYER_ISLEAF,
+      </if>
+      <if test="layerOrder != null" >
+        LAYER_ORDER,
+      </if>
+      <if test="layerValue != null" >
+        LAYER_VALUE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=OTHER},
+      </if>
+      <if test="layerName != null" >
+        #{layerName,jdbcType=OTHER},
+      </if>
+      <if test="layerType != null" >
+        #{layerType,jdbcType=OTHER},
+      </if>
+      <if test="layerLevel != null" >
+        #{layerLevel,jdbcType=OTHER},
+      </if>
+      <if test="layerUrl != null" >
+        #{layerUrl,jdbcType=OTHER},
+      </if>
+      <if test="layerPid != null" >
+        #{layerPid,jdbcType=OTHER},
+      </if>
+      <if test="layerRemark != null" >
+        #{layerRemark,jdbcType=OTHER},
+      </if>
+      <if test="layerIsleaf != null" >
+        #{layerIsleaf,jdbcType=OTHER},
+      </if>
+      <if test="layerOrder != null" >
+        #{layerOrder,jdbcType=OTHER},
+      </if>
+      <if test="layerValue != null" >
+        #{layerValue,jdbcType=OTHER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="po.GzwMapmgeDictExample" resultType="java.lang.Integer" >
+    select count(*) from GZW_MAPMGE_DICT
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update GZW_MAPMGE_DICT
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=OTHER},
+      </if>
+      <if test="record.layerName != null" >
+        LAYER_NAME = #{record.layerName,jdbcType=OTHER},
+      </if>
+      <if test="record.layerType != null" >
+        LAYER_TYPE = #{record.layerType,jdbcType=OTHER},
+      </if>
+      <if test="record.layerLevel != null" >
+        LAYER_LEVEL = #{record.layerLevel,jdbcType=OTHER},
+      </if>
+      <if test="record.layerUrl != null" >
+        LAYER_URL = #{record.layerUrl,jdbcType=OTHER},
+      </if>
+      <if test="record.layerPid != null" >
+        LAYER_PID = #{record.layerPid,jdbcType=OTHER},
+      </if>
+      <if test="record.layerRemark != null" >
+        LAYER_REMARK = #{record.layerRemark,jdbcType=OTHER},
+      </if>
+      <if test="record.layerIsleaf != null" >
+        LAYER_ISLEAF = #{record.layerIsleaf,jdbcType=OTHER},
+      </if>
+      <if test="record.layerOrder != null" >
+        LAYER_ORDER = #{record.layerOrder,jdbcType=OTHER},
+      </if>
+      <if test="record.layerValue != null" >
+        LAYER_VALUE = #{record.layerValue,jdbcType=OTHER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update GZW_MAPMGE_DICT
+    set ID = #{record.id,jdbcType=OTHER},
+      LAYER_NAME = #{record.layerName,jdbcType=OTHER},
+      LAYER_TYPE = #{record.layerType,jdbcType=OTHER},
+      LAYER_LEVEL = #{record.layerLevel,jdbcType=OTHER},
+      LAYER_URL = #{record.layerUrl,jdbcType=OTHER},
+      LAYER_PID = #{record.layerPid,jdbcType=OTHER},
+      LAYER_REMARK = #{record.layerRemark,jdbcType=OTHER},
+      LAYER_ISLEAF = #{record.layerIsleaf,jdbcType=OTHER},
+      LAYER_ORDER = #{record.layerOrder,jdbcType=OTHER},
+      LAYER_VALUE = #{record.layerValue,jdbcType=OTHER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <select id="getHostdepartment" resultType="map" parameterType="map">
+  		select t.* from gzw_mapmge_dict t order by t.layer_level,t.layer_pid,t.layer_order;
+  </select>
+</mapper>

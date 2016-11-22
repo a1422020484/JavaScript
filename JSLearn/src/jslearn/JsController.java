@@ -4,11 +4,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
-@RequestMapping("/js")
+@RequestMapping("/welcome")
 public class JsController {
 	
-		@RequestMapping("/tojsIndex")
-		public String tojsIndex(Model model){
-			return "javascript/index";
+		@RequestMapping("/index")
+		public String toIndex(Model model){
+			return "/index";
 		}
 	}

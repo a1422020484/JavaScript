@@ -4,12 +4,12 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import mapper.GzwMapmgeDictMapper;
 import service.ZtreeServcie;
-@Service
+@Component
 @Transactional
 public class ZtreeServcieImpl implements ZtreeServcie {
 

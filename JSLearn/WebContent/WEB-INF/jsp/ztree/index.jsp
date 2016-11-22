@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:set var="ctx" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -7,20 +9,23 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 	<meta name="renderer" content="webkit">
 	<title>矛盾纠纷受理登记</title>
-	<link href="css/reset.css" rel="stylesheet">
-    <link href="css/event.css" rel="stylesheet">
-	<link rel="stylesheet" href="css/laydate.css">
-	<link rel="stylesheet" href="skins/default/laydate.css">
-	<link rel="stylesheet" href="z-tree/css/zTreeStyle/zTreeStyle.css" type="text/css">
-    <script src="js/jquery-1.8.2.min.js"></script>
+	<link href="${ctx}/res/css/ztree/css/reset.css" rel="stylesheet">
+    <link href="${ctx}/res/css/ztree/css/event.css" rel="stylesheet">
+	<link rel="stylesheet" href="${ctx}/res/css/ztree/css/laydate.css">
+	<link rel="stylesheet" href="${ctx}/res/css/ztree/z-tree/css/zTreeStyle/zTreeStyle.css" type="text/css">
+    <script src="${ctx}/res/script/jquery-1.8.2.min.js"></script>
     <!-- <script src="z-tree/js/jquery.ztree.all.min.js"></script> -->
-    <script src="z-tree/js/jquery.ztree.core.min.js"></script>
-    <script src="z-tree/js/jquery.ztree.excheck.min.js"></script>
-	<script src="js/list.js"></script>
-    <script src="js/event.js"></script>
-	<script type="text/javascript" src="js/laydate.dev.js"></script>
-    <script src="js/Validform_v5.3.2_min.js"></script>
+    <script src="${ctx}/res/css/ztree/z-tree/js/jquery.ztree.core.min.js"></script>
+    <script src="${ctx}/res/css/ztree/z-tree/js/jquery.ztree.excheck.min.js"></script>
+	<script src="${ctx}/js/list.js"></script>
+    <script src="${ctx}/js/event.js"></script>
+    <script src="${ctx}/res/script/requestUtil.js"></script>
+    <script src="${ctx}/res/script/util.js"></script>
+	<script type="text/javascript" src="${ctx}/js/laydate.dev.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <script type="text/javascript">
+    	var rootPath="${ctx}";
+    </script>
 </head>
 <body>
 <form action=""class="formx">
@@ -723,7 +728,7 @@
 	</div>
 
 </form>		
-<script>
+<!-- <script>
 	laydate({
     	elem: '#data1'
 	});
@@ -739,99 +744,6 @@
 	laydate({
     	elem: '#data5'
 	});
-</script>
-<script type="text/javascript">
-// $(function(){
-// 	$('input[errormsg],*[datatype]').after('<div class="info"><span class="Validform_checktip">请输入正确的信息</span><span class="dec"><s class="dec1">◆</s><s class="dec2">◆</s></span></div>');
-// 	$.Tipmsg.r=" ";
-// 	$(".formx").Validform({
-// 		ignoreHidden:true,
-// 		datatype:{
-// 			"idcard":function(gets,obj,curform,datatype){
-			
-// 				var Wi = [ 7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2, 1 ];// 加权因子;
-// 				var ValideCode = [ 1, 0, 10, 9, 8, 7, 6, 5, 4, 3, 2 ];// 身份证验证位值，10代表X;
-			
-// 				if (gets.length == 15) {   
-// 					return isValidityBrithBy15IdCard(gets);   
-// 				}else if (gets.length == 18){   
-// 					var a_idCard = gets.split("");// 得到身份证数组   
-// 					if (isValidityBrithBy18IdCard(gets)&&isTrueValidateCodeBy18IdCard(a_idCard)) {   
-// 						return true;   
-// 					}   
-// 					return false;
-// 				}
-// 				return false;
-				
-// 				function isTrueValidateCodeBy18IdCard(a_idCard) {   
-// 					var sum = 0; // 声明加权求和变量   
-// 					if (a_idCard[17].toLowerCase() == 'x') {   
-// 						a_idCard[17] = 10;// 将最后位为x的验证码替换为10方便后续操作   
-// 					}   
-// 					for ( var i = 0; i < 17; i++) {   
-// 						sum += Wi[i] * a_idCard[i];// 加权求和   
-// 					}   
-// 					valCodePosition = sum % 11;// 得到验证码所位置   
-// 					if (a_idCard[17] == ValideCode[valCodePosition]) {   
-// 						return true;   
-// 					}
-// 					return false;   
-// 				}
-				
-// 				function isValidityBrithBy18IdCard(idCard18){   
-// 					var year = idCard18.substring(6,10);   
-// 					var month = idCard18.substring(10,12);   
-// 					var day = idCard18.substring(12,14);   
-// 					var temp_date = new Date(year,parseFloat(month)-1,parseFloat(day));   
-// 					// 这里用getFullYear()获取年份，避免千年虫问题   
-// 					if(temp_date.getFullYear()!=parseFloat(year) || temp_date.getMonth()!=parseFloat(month)-1 || temp_date.getDate()!=parseFloat(day)){   
-// 						return false;   
-// 					}
-// 					return true;   
-// 				}
-				
-// 				function isValidityBrithBy15IdCard(idCard15){   
-// 					var year =  idCard15.substring(6,8);   
-// 					var month = idCard15.substring(8,10);   
-// 					var day = idCard15.substring(10,12);
-// 					var temp_date = new Date(year,parseFloat(month)-1,parseFloat(day));   
-// 					// 对于老身份证中的你年龄则不需考虑千年虫问题而使用getYear()方法   
-// 					if(temp_date.getYear()!=parseFloat(year) || temp_date.getMonth()!=parseFloat(month)-1 || temp_date.getDate()!=parseFloat(day)){   
-// 						return false;   
-// 					}
-// 					return true;
-// 				}
-				
-// 			}
-			
-// 		},
-// 		tiptype:function(msg,o,cssctl){
-// 			if(!o.obj.is("form")){
-// 				var objtip=o.obj.parents("td").find(".Validform_checktip");
-// 				cssctl(objtip,o.type);
-// 				objtip.text(msg);
-				
-// 				var infoObj=o.obj.parents("td").find(".info");
-// 				o.obj.parents("td").css({'position':'relative'})
-// 				if(o.type==2){
-// 					infoObj.fadeOut(200);
-// 				}else{
-// 					if(infoObj.is(":visible")){return;}
-// 					var left=o.obj.offset().left,
-// 						top=o.obj.offset().top;
-	
-// 					infoObj.css({
-// 						// left:left+100,top:top-40
-// 						left:0,top:0
-// 					}).show().animate({
-// 						top:-30	
-// 					},200);
-// 				}
-				
-// 			}	
-// 		}
-// 	});
-// })
-</script>
+</script> -->
 </body>
 </html>

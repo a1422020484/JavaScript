@@ -5,34 +5,25 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8">
-<meta name="description" content="A simple HTML5 Template">
-<meta name="author" content="dron">
-<meta name="viewport" content="width=device-width, height=device-height, user-scalable=no, initial-scale=1.0, maximum-scale=1.0">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black">
-<link rel="shortcut icon" href="../favicon.ico">
-<link rel="stylesheet" href="../images/index.css">
-<title>水果忍者HTML5网页版在线游戏</title>
-<!--[if lt IE 9]><script>document.createElement("canvas");</script><![endif]-->
+
+<script type="text/javascript" src="${ctx}/res/script/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="${ctx}/plugins/bootstrap/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="${ctx}/plugins/bootstrap/css/bootstrap.min.css">
+<title>欢迎回来</title>
+
 </head>
 <body>
-<div id="extra"></div>
-<em> -- Fruit Ninja -- </em>
-<em> The game is developed by the Baidu JS team, </em>
-<em> we provide the source in git: https://github.com/ChineseDron/fruit-ninja </em>
-<em> follow me on weibo http://weibo.com/baidujs </em>
-<em> or learn more, to see http://tangram.baidu.com </em>
-<canvas id="view" width="640" height="480"></canvas>
-
-<div id="desc">
-<div style="text-align:center;clear:both;">
-<script src="${ctx}/../gg_bd_ad_720x90.js" type="text/javascript"></script>
-<script src="${ctx}/../follow.js" type="text/javascript"></script>
-</div>
-	<div>水果忍者网页版，由<a href="http://weibo.com/baidujs" target="_blank">百度 JS 小组</a>倾情提供</div>
-	<div id="browser"></div>
-</div>
-<script src="${ctx}/scripts/all.js"></script>
+	<div class="container">
+			<div class="row">
+			  <div class="col-xs-6 col-md-4"><a href="${ctx}/bsform/toForm">表单展示form</a></div>
+			  <div class="col-xs-6 col-md-4"><a href="${ctx}/bootstrap/toTable">栅格系统</a></div>
+			  <div class="col-xs-6 col-md-4"><a href="${ctx}/bsform/form">待确定</a></div>
+			  <div class="col-xs-6 col-md-4"><a href="${ctx}/bsform/form">待确定</a></div>
+			  <div class="col-xs-6 col-md-4"><a href="${ctx}/bsform/form">待确定</a></div>
+			  <div class="col-xs-6 col-md-4"><a href="${ctx}/bsform/form">待确定</a></div>
+			  <div class="col-xs-6 col-md-4"><a href="${ctx}/bsform/form">待确定</a></div>
+			  <div class="col-xs-6 col-md-4"><a href="${ctx}/bsform/form">待确定</a></div>
+			</div>
+	</div>
 </body>
 </html>
