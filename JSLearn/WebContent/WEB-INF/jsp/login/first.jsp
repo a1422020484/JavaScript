@@ -4,12 +4,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>欢迎进入系统</title>
 </head>
-<body bgcolor="#FFFFFF" text="#000000"> 
-	<script language="JavaScript"> 
-		location.href = "<%=request.getContextPath()%>/welcome/index" 
-	</script> 
-	
+<body>
+	<h3>欢迎进入系统</h3>
 </body>
 </html>

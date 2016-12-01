@@ -50,5 +50,12 @@
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jackson-annotations-2.3.0.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jackson-core-2.3.1.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jackson-databind-2.3.1.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/shiro-core-1.2.3.jar" sourcepath="H:/shiro-root-1.2.3-source-release.zip"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/shiro-ehcache-1.2.3.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/shiro-spring-1.2.3.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/shiro-web-1.2.3.jar" sourcepath="H:/shiro-root-1.2.3-source-release.zip"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/slf4j-log4j12-1.7.5.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/slf4j-api-1.7.5.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/ehcache-core-2.5.0.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

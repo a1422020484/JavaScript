@@ -11,4 +11,7 @@ public class JsController {
 		public String toIndex(Model model){
 			return "/index";
 		}
+		
+		
+		
 	}
