@@ -1,0 +1,123 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jms="http://www.springframework.org/schema/jms" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans-3.2.xsd 
+		http://www.springframework.org/schema/mvc 
+		http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd 
+		http://www.springframework.org/schema/context 
+		http://www.springframework.org/schema/context/spring-context-3.2.xsd 
+		http://www.springframework.org/schema/aop 
+		http://www.springframework.org/schema/aop/spring-aop-3.2.xsd 
+		http://www.springframework.org/schema/tx 
+		http://www.springframework.org/schema/tx/spring-tx-3.2.xsd 
+		http://www.springframework.org/schema/jms http://www.springframework.org/schema/jms/spring-jms-3.0.xsd ">
+		
+	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+		<property name="securityManager" ref="securityManager" />
+		<property name="loginUrl" value="/login" />
+		<!-- <property name="successUrl" value="/login/loginSuccessFull" /> -->
+		<property name="successUrl" value="/first.action"/>
+		<property name="unauthorizedUrl" value="/login/unauthorized" />
+		<property name="filterChainDefinitions">
+			<value>
+				/home* = anon
+				/ = anon
+				/logout = logout
+				/role/** = roles[admin]
+				/permission/** = perms[permssion:look]
+				/** = authc
+			</value>
+		</property>
+	</bean>
+		
+	<!-- securityManager安全管理器 -->
+	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+		<property name="realm" ref="customRealm" />
+		<!-- 注入缓存管理器 -->
+		<property name="cacheManager" ref="cacheManager"/>
+		<!-- 注入session管理器 -->
+		<!-- <property name="sessionManager" ref="sessionManager" /> -->
+		<!-- 记住我 -->
+		<property name="rememberMeManager" ref="rememberMeManager"/>
+		
+	</bean>	
+	<!-- 会话管理器 -->
+    <bean id="sessionManager" class="org.apache.shiro.web.session.mgt.DefaultWebSessionManager">
+        <!-- session的失效时长，单位毫秒 -->
+        <property name="globalSessionTimeout" value="600000"/>
+        <!-- 删除失效的session -->
+        <property name="deleteInvalidSessions" value="true"/>
+    </bean>
+    <!-- rememberMeManager管理器，写cookie，取出cookie生成用户信息 -->
+	<bean id="rememberMeManager" class="org.apache.shiro.web.mgt.CookieRememberMeManager">
+		<property name="cookie" ref="rememberMeCookie" />
+	</bean>
+	<!-- 记住我cookie -->
+	<bean id="rememberMeCookie" class="org.apache.shiro.web.servlet.SimpleCookie">
+		<!-- rememberMe是cookie的名字 -->
+		<constructor-arg value="rememberMe" />
+		<!-- 记住我cookie生效时间30天 -->
+		<property name="maxAge" value="2592000" />
+	</bean>
+	<!-- realm -->
+	<bean id="customRealm" class="jslearn.shiro.CustomRealm">
+		<!-- 将凭证匹配器设置到realm中，realm按照凭证匹配器的要求进行散列 -->
+		<property name="credentialsMatcher" ref="credentialsMatcher"/>
+	</bean>
+	<!-- 缓存管理器 -->
+	<bean id="cacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">
+    	<property name="cacheManagerConfigFile" value="classpath:shiro-ehcache.xml"/>
+    </bean>
+	
+	<!-- 自定义form认证过虑器 -->
+	<!-- 基于Form表单的身份验证过滤器，不配置将也会注册此过虑器，表单中的用户账号、密码及loginurl将采用默认值，建议配置 -->
+		<bean id="formAuthenticationFilter" 
+		class="jslearn.shiro.CustomFormAuthenticationFilter">
+			<!-- 表单中账号的input名称 -->
+			<property name="usernameParam" value="username" />
+			<!-- 表单中密码的input名称 -->
+			<property name="passwordParam" value="password" />
+			<!-- 记住我input的名称 -->
+			<property name="rememberMeParam" value="rememberMe"/>
+	 </bean>
+	
+	
+	<!-- 凭证匹配器 -->
+	<bean id="credentialsMatcher"
+		class="org.apache.shiro.authc.credential.HashedCredentialsMatcher">
+		<property name="hashAlgorithmName" value="md5" />
+		<property name="hashIterations" value="1" />
+	</bean>
+	
+	
+		<!-- <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+			单realm应用。如果有多个realm，使用‘realms’属性代替
+			<property name="realm" ref="sampleRealm" />
+			<property name="cacheManager" ref="cacheManager" />
+		</bean> -->
+		<!-- <bean id="cacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager" /> -->	
+		<!-- authenticationQuery 登录认证用户的查询SQL，需要用登录用户名作为条件，查询密码字段。
+			userRolesQuery 用户角色查询SQL，需要通过登录用户名去查询。查询角色字段
+			permissionsQuery 用户的权限资源查询SQL，需要用单一角色查询角色下的权限资源，如果存在多个角色，则是遍历每个角色，分别查询出权限资源并添加到集合中。
+			permissionsLookupEnabled 默认false。False时不会使用permissionsQuery的SQL去查询权限资源。设置为true才会去执行。
+			saltStyle 密码是否加盐，默认是NO_SALT不加盐。加盐有三种选择CRYPT,COLUMN,EXTERNAL。详细可以去看文档。这里按照不加盐处理。 -->
+	<bean id="sampleRealm" class="org.apache.shiro.realm.jdbc.JdbcRealm">
+		<property name="dataSource" ref="dataSource" />
+		<property name="authenticationQuery" value="select t.password from my_user t where t.username = ?" />
+		<property name="userRolesQuery" value="select a.rolename from my_user_role t left join my_role a on t.roleid = a.id where t.username = ? " />
+		<property name="permissionsQuery" value="SELECT B.PERMISSION FROM MY_ROLE T LEFT JOIN MY_ROLE_PERMISSION A ON T.ID = A.ROLE_ID LEFT JOIN MY_PERMISSION B ON A.PERMISSION = B.ID WHERE T.ROLENAME = ? " />
+		<property name="permissionsLookupEnabled" value="true" />
+		<property name="saltStyle" value="NO_SALT" />
+		<property name="credentialsMatcher" ref="hashedCredentialsMatcher" />
+	</bean>
+	<!-- credentialsMatcher 密码匹配规则 -->
+	<bean id="hashedCredentialsMatcher" class="org.apache.shiro.authc.credential.HashedCredentialsMatcher">
+		<property name="hashAlgorithmName" value="MD5" />
+		<property name="storedCredentialsHexEncoded" value="true" />
+		<property name="hashIterations" value="1" />
+	</bean>
+			
+</beans>
