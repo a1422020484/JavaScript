@@ -19,8 +19,15 @@
 		<property name="securityManager" ref="securityManager" />
 		<property name="loginUrl" value="/login" />
 		<!-- <property name="successUrl" value="/login/loginSuccessFull" /> -->
-		<property name="successUrl" value="/first.action"/>
+		<property name="successUrl" value="/welcome/index"/>
 		<property name="unauthorizedUrl" value="/login/unauthorized" />
+		<!-- 自定义filter配置 -->
+		<property name="filters">
+			<map>
+				<!-- 将自定义 的FormAuthenticationFilter注入shiroFilter中-->
+				<entry key="authc" value-ref="formAuthenticationFilter" />
+			</map>
+		</property>
 		<property name="filterChainDefinitions">
 			<value>
 				/home* = anon
